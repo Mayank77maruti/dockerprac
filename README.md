@@ -1,5 +1,3 @@
-Here's the completed README in Markdown format with Docker instructions:
-
 ```markdown
 # Next.js Project with Docker Support
 
