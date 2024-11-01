@@ -1,3 +1,10 @@
+## Status for today
+1. Learnt to push docker image to docker hub
+2. DockerHub is a image register like AWS ECR
+3. Learnt how to push image to AWS ECR
+4. Learnt how to make cluster and host image using AWS ECS.
+5. Last learnt how to clean all the resource and image else too much bill thank you.
+
 ```markdown
 # Next.js Project with Docker Support
 
