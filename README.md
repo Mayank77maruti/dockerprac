@@ -1,8 +1,15 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Here's the completed README in Markdown format with Docker instructions:
+
+```markdown
+# Next.js Project with Docker Support
+
+This project is a [Next.js](https://nextjs.org) application bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+### Running in Development Mode
+
+To start the development server, use one of the following commands:
 
 ```bash
 npm run dev
@@ -14,23 +21,61 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Running the Application with Docker
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To run this Next.js application using Docker, follow these steps:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#### 1. **Build the Docker Image**
 
-## Learn More
+Make sure Docker is installed and running on your machine. Open your terminal in the project directory and run the following command to build the Docker image:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+docker build -t nextjs-app .
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This command creates a Docker image named `nextjs-app` based on the `Dockerfile` in the project directory.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#### 2. **Run the Docker Container**
 
-## Deploy on Vercel
+After the image has been built, you can start a container to run the app. Use this command:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+docker run -p 3000:3000 nextjs-app
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This command runs the container and maps port `3000` in the container to port `3000` on your local machine. You can access the application by opening [http://localhost:3000](http://localhost:3000) in your web browser.
+
+#### 3. **Additional Docker Commands**
+
+- **To Stop the Running Container:**  
+  Find the `CONTAINER ID` using:
+  ```bash
+  docker ps
+  ```
+  Then, stop it with:
+  ```bash
+  docker stop <container_id>
+  ```
+
+- **To Remove the Image:**  
+  If you want to delete the Docker image after stopping the container, run:
+  ```bash
+  docker rmi nextjs-app
+  ```
+
+#### 4. **Environment Variables**
+
+If your app uses environment variables, create a `.env` file in the project root and include any necessary environment variables. Make sure to add `.env` to `.dockerignore` to prevent it from being copied directly into the Docker image. Instead, you can pass environment variables at runtime:
+
+```bash
+docker run -p 3000:3000 --env-file .env nextjs-app
+```
+
+#### 5. **Building for Production**
+
+For production, adjust the `Dockerfile` to optimize for a smaller image size or use multi-stage builds.
+
+---
+
+Your Next.js application is now fully dockerized, and you can use these instructions to run it in a containerized environment.
+```
